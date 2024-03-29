@@ -776,7 +776,7 @@ class FullApplicationTest extends TestCase
         $app->register(ConsoleServiceProvider::class);
         $command = $app->make('command.queue.batches-table');
         $this->assertNotNull($command);
-        $this->assertEquals('queue:batches-table', $command->getName());
+        $this->assertEquals('make:queue-batches-table', $command->getName());
     }
 
     public function testHandlingCommandsTerminatesApplication()
