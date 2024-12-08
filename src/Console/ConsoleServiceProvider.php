@@ -32,6 +32,7 @@ use Illuminate\Queue\Console\RestartCommand as QueueRestartCommand;
 use Illuminate\Queue\Console\RetryCommand as QueueRetryCommand;
 use Illuminate\Queue\Console\TableCommand;
 use Illuminate\Queue\Console\WorkCommand as QueueWorkCommand;
+use Laravel\Lumen\Routing\Console\RouteListCommand;
 use Illuminate\Support\ServiceProvider;
 
 class ConsoleServiceProvider extends ServiceProvider
@@ -66,6 +67,7 @@ class ConsoleServiceProvider extends ServiceProvider
         'ScheduleRun' => 'command.schedule.run',
         'ScheduleWork' => 'command.schedule.work',
         'SchemaDump' => 'command.schema.dump',
+        'RouteList' => 'command.route.list',
     ];
 
     /**
@@ -473,6 +475,18 @@ class ConsoleServiceProvider extends ServiceProvider
     {
         $this->app->singleton('command.schema.dump', function () {
             return new DumpCommand;
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerRouteListCommand()
+    {
+        $this->app->singleton('command.route.list', function ($app) {
+            return new RouteListCommand;
         });
     }
 
